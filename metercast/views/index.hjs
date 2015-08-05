@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>METERCAST</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css' />
+    <link href="/stylesheets/mobipick.css" rel="stylesheet" />
+  </head>
+  <body>
+
+  <script src='https://code.jquery.com/jquery-1.11.3.js'></script>
+  <script src='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js'></script>
+  <script src="/javascripts/xdate.js"></script>
+  <script src="/javascripts/mobipick.js"></script>
+
+  <script type="text/javascript">
+    $( document ).on( "pagecreate", "#main", function() {
+        var picker = $( "input[name='date']", this );
+
+        var xd = new XDate();
+        var today = xd.toString("yyyy-MM-dd");
+        picker.val(today);
+
+        picker.mobipick();
+        picker.on( "change", function() {
+            var date = $( this ).val();
+            var dateObject = $( this ).mobipick( "option", "date" );
+        });
+    });
+    </script>
+    <div data-role="page" id='main'>
+
+        <div data-role="header">
+            <h1>METERCAST</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+
+            <h2>Your metercast welcomes you</h2>
+            <span style='color:green'><b>{{message}}</b></span>
+
+            <div class='data-role="navbar'>
+                <a href='/list'>Check out historical data</a>
+            </div>
+
+            <br><br>
+
+            <form action='/' method='post'>
+                Date:        <input type='text' name='date'><br>
+                Electricity: <input type='text' name='electricity'><br>
+                Gas:         <input type='text' name='gas'><br>
+                Water:       <input type='text' name='water'><br>
+                <input type='submit' value='Save'>
+            </form>
+
+        </div>
+    </div>
+
+  </body>
+</html>

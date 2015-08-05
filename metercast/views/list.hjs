@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>METERCAST</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'>
+<body>
+
+  <script src='https://code.jquery.com/jquery-1.11.3.js'></script>
+  <script src='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js'></script>
+
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script src='/javascripts/chartkick.js'></script>
+
+  <div data-role="page">
+        <div data-role="header">
+            <h1>METERCAST</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <a href='/'>Back To Main Page</a><br><br>
+
+
+{{#all_documents}}
+
+<h2>Gas</h2><hr>
+<table data-role="table" data-mode="reflow" class="ui-responsive">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+    {{#gas}}
+        <tr>
+            <td>{{date}} ({{dayOfWeek}})</td>
+            <td>{{value}}
+                {{#diff}}(+{{diff}}, avg: {{avg}}){{/diff}}
+        </tr>
+    {{/gas}}
+    </tbody>
+</table>
+
+<h2>Electricity</h2><hr>
+<table data-role="table" data-mode="reflow" class="ui-responsive">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+    {{#electricity}}
+        <tr>
+            <td>{{date}} ({{dayOfWeek}})</td>
+            <td>{{value}}
+                {{#diff}}(+{{diff}}, avg: {{avg}}){{/diff}}
+            </td>
+        </tr>
+    {{/electricity}}
+    </tbody>
+</table>
+
+
+<h2>Water</h2><hr>
+<table data-role="table" data-mode="reflow" class="ui-responsive">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+    {{#water}}
+        <tr>
+            <td>{{date}} ({{dayOfWeek}})</td>
+            <td>{{value}}
+                {{#diff}}(+{{diff}}, avg: {{avg}}){{/diff}}
+        </tr>
+    {{/water}}
+    </tbody>
+</table>
+
+{{/all_documents}}
+
+        </div>
+  </div>
+
+
+
+</body>
+</html>
