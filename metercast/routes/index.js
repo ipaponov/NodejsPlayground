@@ -36,9 +36,12 @@ router.get('/list', function(req, res, next) {
     var queries = 3;
     var all_docs = new Object;
 
+    var limit = req.query.limit || 5;
+    if (req.query.all) { limit = 0; }
+
     // async database query below
     var findMe = function(type) {
-        data.find({'type':type}).sort({'date':-1}).exec(function (err, docs) {
+        data.find({'type':type}).sort({'date':-1}).limit(limit).exec(function (err, docs) {
             if (err) { next(err); }
             all_docs[type] = docs;
 
@@ -55,7 +58,8 @@ router.get('/list', function(req, res, next) {
                     var before = moment(all_docs[type][j]['date']);
                     var days_between = now.diff(before, 'days');
 
-                    all_docs[type][i]['days_between'] = days_between;
+                    all_docs[type][i]['days_between']
+                        = sprintf("%02d", days_between);
                     all_docs[type][i]['avg']
                         = sprintf("%.2f", (newVal - oldVal) / days_between);
                 }
@@ -77,7 +81,7 @@ router.get('/list', function(req, res, next) {
         if (queries == 0) {
             res.render(
                 'list',
-                {'all_documents':all_docs}
+                {'all_documents':all_docs, 'limit':limit}
             );
         }
     };

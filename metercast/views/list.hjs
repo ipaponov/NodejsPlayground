@@ -15,10 +15,15 @@
   <div data-role="page">
         <div data-role="header">
             <h1>METERCAST</h1>
+            <a href='/'>Back To Main Page</a>
         </div>
 
         <div role="main" class="ui-content">
-            <a href='/'>Back To Main Page</a><br><br>
+            {{#limit}}
+                We're showing {{limit}} records per table.
+                <a href='?all=1'>Show all</a>
+                <br><br>
+            {{/limit}}
 
 
 {{#all_documents}}

@@ -33,16 +33,13 @@
 
         <div data-role="header">
             <h1>METERCAST</h1>
+            <a href='/list'>History</a>
         </div>
 
         <div role="main" class="ui-content">
 
             <h2>Your metercast welcomes you</h2>
             <span style='color:green'><b>{{message}}</b></span>
-
-            <div class='data-role="navbar'>
-                <a href='/list'>Check out historical data</a>
-            </div>
 
             <br><br>
 
