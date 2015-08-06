@@ -54,6 +54,8 @@ router.get('/list', function(req, res, next) {
                     var now    = moment(all_docs[type][i]['date']);
                     var before = moment(all_docs[type][j]['date']);
                     var days_between = now.diff(before, 'days');
+
+                    all_docs[type][i]['days_between'] = days_between;
                     all_docs[type][i]['avg']
                         = sprintf("%.2f", (newVal - oldVal) / days_between);
                 }

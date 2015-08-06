@@ -29,14 +29,17 @@
         <tr>
             <th>Date</th>
             <th>Value</th>
+            <th>Deltas</th>
+            <th>Avg</th>
         </tr>
     </thead>
     <tbody>
     {{#gas}}
         <tr>
             <td>{{date}} ({{dayOfWeek}})</td>
-            <td>{{value}}
-                {{#diff}}(+{{diff}}, avg: {{avg}}){{/diff}}
+            <td>{{value}}</td>
+            <td>{{#diff}}+{{diff}} in {{days_between}} days{{/diff}}</td>
+            <td>{{#diff}}{{avg}}{{/diff}}</td>
         </tr>
     {{/gas}}
     </tbody>
@@ -54,9 +57,9 @@
     {{#electricity}}
         <tr>
             <td>{{date}} ({{dayOfWeek}})</td>
-            <td>{{value}}
-                {{#diff}}(+{{diff}}, avg: {{avg}}){{/diff}}
-            </td>
+            <td>{{value}}</td>
+            <td>{{#diff}}+{{diff}} in {{days_between}} days{{/diff}}</td>
+            <td>{{#diff}}{{avg}}{{/diff}}</td>
         </tr>
     {{/electricity}}
     </tbody>
@@ -75,8 +78,9 @@
     {{#water}}
         <tr>
             <td>{{date}} ({{dayOfWeek}})</td>
-            <td>{{value}}
-                {{#diff}}(+{{diff}}, avg: {{avg}}){{/diff}}
+            <td>{{value}}</td>
+            <td>{{#diff}}+{{diff}} in {{days_between}} days{{/diff}}</td>
+            <td>{{#diff}}{{avg}}{{/diff}}</td>
         </tr>
     {{/water}}
     </tbody>
