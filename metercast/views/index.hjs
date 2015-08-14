@@ -46,9 +46,9 @@
 
             <form action='/' method='post'>
                 Date:        <input type='text' name='date'><br>
-                Electricity: <input type='text' name='electricity'><br>
-                Gas:         <input type='text' name='gas'><br>
-                Water:       <input type='text' name='water'><br>
+                Electricity: <input type='number' name='electricity'><br>
+                Gas:         <input type='number' name='gas'><br>
+                Water:       <input type='number' name='water'><br>
                 <input type='submit' value='Save'>
             </form>
 
