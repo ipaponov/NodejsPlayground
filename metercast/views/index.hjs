@@ -34,6 +34,7 @@
         <div data-role="header">
             <h1>METERCAST</h1>
             <a href='/list'>History</a>
+            <a href='/graphs'>Graphs</a>
         </div>
 
         <div role="main" class="ui-content">

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>METERCAST</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href='https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css' />
+<body>
+
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js'></script>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src='/javascripts/chartkick.js'></script>
+
+<script>
+    $(document).ready(function() {
+        var gas_data = new Object();
+        var el_data  = new Object();
+        var w_data   = new Object();
+
+{{#all_documents}}
+    {{#gas}}
+        {{#diff}}gas_data["{{date}}"] = {{avg}};{{/diff}}
+    {{/gas}}
+    {{#electricity}}
+        {{#diff}}el_data["{{date}}"] = {{avg}};{{/diff}}
+    {{/electricity}}
+    {{#water}}
+        {{#diff}}w_data["{{date}}"] = {{avg}};{{/diff}}
+    {{/water}}
+{{/all_documents}}
+
+        new Chartkick.LineChart("g_chart", [
+            { "name": "Gas", "data": gas_data }
+        ]);
+        new Chartkick.LineChart("e_chart", [
+            { "name": "Electr.", "data": el_data }
+        ]);
+        new Chartkick.LineChart("w_chart", [
+            { "name": "Water", "data": w_data }
+        ]);
+    });
+</script>
+
+  <div data-role="page">
+        <div data-role="header">
+            <h1>METERCAST</h1>
+            <a href='/'>Back To Main Page</a>
+        </div>
+
+        <div role="main" class="ui-content">
+            <div id="g_chart" style="height: 300px;"></div>
+            <div id="e_chart" style="height: 300px;"></div>
+            <div id="w_chart" style="height: 300px;"></div>
+        </div>
+  </div>
+
+</body>
+</html>

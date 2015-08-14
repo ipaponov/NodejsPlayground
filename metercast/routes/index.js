@@ -31,13 +31,9 @@ router.post('/', function(req, res, next) {
 });
 
 
-
-router.get('/list', function(req, res, next) {
+function get_all(limit, callback) {
     var queries = 3;
     var all_docs = new Object;
-
-    var limit = req.query.limit || 5;
-    if (req.query.all) { limit = 0; }
 
     // async database query below
     var findMe = function(type) {
@@ -79,10 +75,7 @@ router.get('/list', function(req, res, next) {
 
     var finish = function() {
         if (queries == 0) {
-            res.render(
-                'list',
-                {'all_documents':all_docs, 'limit':limit}
-            );
+            callback(all_docs);
         }
     };
 
@@ -90,7 +83,28 @@ router.get('/list', function(req, res, next) {
     for (i in props) {
         findMe(props[i]);
     }
+}
+
+router.get('/list', function(req, res, next) {
+    var limit = req.query.limit || 5;
+    if (req.query.all) { limit = 0; }
+
+    var all_docs = get_all(limit, function(all_docs) {
+        res.render(
+            'list',
+            {'all_documents':all_docs, 'limit':limit}
+        );
+    });
 });
 
+
+router.get('/graphs', function(req, res, next) {
+    var all_docs = get_all(0, function(all_docs) {
+        res.render(
+            'graphs',
+            {'all_documents':all_docs}
+        );
+    });
+});
 
 module.exports = router;
