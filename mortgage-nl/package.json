@@ -1,0 +1,16 @@
+{
+  "name": "mortgage-nl",
+  "version": "0.1.0",
+  "description": "Mortgage calculator",
+  "main": "calculator.js",
+  "dependencies": {
+    "better-console": "~0.2.4",
+    "sprintf-js": "~1.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause"
+}
